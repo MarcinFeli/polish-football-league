@@ -21,7 +21,7 @@
 					<div class="mt-2">
 						<div class="flex space-x-3">
 							<span
-								v-for="(match, index) in recentMatches"
+								v-for="(match, index) in [...recentMatches].reverse()"
 								:key="index"
 								class="w-10 h-10 flex items-center justify-center text-white text-sm font-bold rounded-full"
 								:class="resultClass(resultKey(match.result))">
