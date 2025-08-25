@@ -1,8 +1,12 @@
 <template>
-	<BaseModal title="Edit Team Details" save-button-text="Save Details" @close="$emit('close')" @save="saveDetails">
+	<BaseModal
+		:title="t('modals.editTeamDetails')"
+		:save-button-text="t('buttons.saveDetails')"
+		@close="$emit('close')"
+		@save="saveDetails">
 		<div class="space-y-4">
 			<div>
-				<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Coach</label>
+				<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{{ t('teams.coach') }} </label>
 				<input
 					v-model="coach"
 					type="text"
@@ -11,7 +15,7 @@
 			</div>
 
 			<div>
-				<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Stadium</label>
+				<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{{ t('teams.stadium') }} </label>
 				<input
 					v-model="stadium"
 					type="text"
@@ -26,6 +30,8 @@
 import { ref, onMounted } from 'vue'
 import { useTeamsStore } from '~/stores/teams'
 import type { Team } from '~/types'
+
+const { t } = useI18n()
 
 const props = defineProps<{
 	team: Team

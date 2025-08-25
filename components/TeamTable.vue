@@ -93,6 +93,7 @@ import { useTeamsStore } from '../stores/teams'
 import { SortField, SortDirection } from '../types/enums'
 import type { Team } from '../types'
 
+const { t } = useI18n()
 const teamsStore = useTeamsStore()
 const router = useRouter()
 
@@ -102,18 +103,18 @@ const sortDirection = ref<SortDirection>(SortDirection.Asc)
 type ExtraNonSortField = 'played' | 'form'
 type Column = { field: SortField | ExtraNonSortField; label: string; sortable?: boolean }
 
-const columns: Column[] = [
-	{ field: SortField.Position, label: 'Pos' },
-	{ field: SortField.Name, label: 'Team' },
-	{ field: SortField.Points, label: 'Points' },
-	{ field: 'played', label: 'Played', sortable: false },
-	{ field: SortField.Wins, label: 'W' },
-	{ field: SortField.Draws, label: 'D' },
-	{ field: SortField.Losses, label: 'L' },
-	{ field: SortField.GoalsFor, label: 'GF' },
-	{ field: SortField.GoalsAgainst, label: 'GA' },
-	{ field: 'form', label: 'Form', sortable: false },
-]
+const columns = computed<Column[]>(() => [
+	{ field: SortField.Position, label: t('teams.position') },
+	{ field: SortField.Name, label: t('teams.team')  },
+	{ field: SortField.Points, label: t('teams.points')  },
+	{ field: 'played', label: t('teams.played') , sortable: false },
+	{ field: SortField.Wins, label: t('teams.wins')  },
+	{ field: SortField.Draws, label: t('teams.draws')  },
+	{ field: SortField.Losses, label: t('teams.losses')  },
+	{ field: SortField.GoalsFor, label: t('teams.goalsFor') },
+	{ field: SortField.GoalsAgainst, label: t('teams.goalsAgainst') },
+	{ field: 'form', label: t('teams.form'), sortable: false },
+])
 
 const favoriteTeamId = computed(() => teamsStore.favoriteTeamId)
 const gamesPlayed = computed(() => teamsStore.gamesPlayed)

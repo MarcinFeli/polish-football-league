@@ -1,0 +1,161 @@
+{
+	"app": {
+		"title": "Polska Liga Piłkarska",
+		"footer": {
+			"rights": "Wszystkie prawa zastrzeżone",
+			"disclaimer": "Dane służą wyłącznie celom demonstracyjnym"
+		}
+	},
+	"navigation": {
+		"backToTeams": "Powrót do drużyn",
+		"viewFullDetails": "Zobacz szczegóły",
+		"setAsFavorite": "Ustaw jako ulubioną",
+		"favoriteTeam": "Ulubiona drużyna"
+	},
+	"teams": {
+		"position": "Poz",
+		"team": "Drużyna",
+		"points": "Punkty",
+		"played": "Rozegrane",
+		"wins": "W",
+		"draws": "R",
+		"losses": "P",
+		"goalsFor": "BZ",
+		"goalsAgainst": "BS",
+		"form": "Forma",
+		"teamStats": "Statystyki drużyny",
+		"goalsScored": "Bramki zdobyte",
+		"goalsConceded": "Bramki stracone",
+		"won": "Wygrane",
+		"drawn": "Remisy",
+		"lost": "Przegrane",
+		"founded": "Założona",
+		"stadium": "Stadion",
+		"coach": "Trener",
+		"edit": "Edytuj",
+		"seasonSummary": "Podsumowanie sezonu",
+		"recentForm": "Ostatnia forma",
+		"mostRecentMatch": "Najnowszy mecz po prawej",
+		"noTeamFound": "Nie znaleziono drużyny",
+		"setAsTooltip": "Ustaw jako ulubioną drużynę",
+		"positionInLeague": "Pozycja",
+		"totalPoints": "Punkty"
+	},
+	"matches": {
+		"allMatches": "Wszystkie mecze",
+		"noMatches": "Brak historii meczów",
+		"noRecentMatches": "Brak ostatnich meczów",
+		"date": "Data",
+		"match": "Mecz",
+		"result": "Wynik",
+		"actions": "Akcje",
+		"editResult": "Edytuj wynik",
+		"home": "Gospodarze",
+		"away": "Goście",
+		"homeScore": "Wynik gospodarzy",
+		"awayScore": "Wynik gości",
+		"addNewMatch": "Dodaj nowy mecz",
+		"selectTeam": "Wybierz drużynę",
+		"editMatchResult": "Edytuj wynik meczu",
+		"addMatch": "Dodaj mecz",
+		"matchUpdated": "Wynik meczu został zaktualizowany! Tabela została przeliczona.",
+		"teamDetailsUpdated": "Dane drużyny zostały zaktualizowane!",
+		"newMatchAdded": "Nowy mecz został dodany!",
+		"scoreValidation": "Wynik musi być między 0 a 7",
+		"homeTeam": "Drużyna gospodarzy",
+		"awayTeam": "Drużyna gości",
+		"finalScore": "Wynik końcowy"
+	},
+	"buttons": {
+		"save": "Zapisz",
+		"cancel": "Anuluj",
+		"saveResult": "Zapisz wynik",
+		"saveDetails": "Zapisz dane",
+		"edit": "Edytuj",
+		"back": "Wstecz",
+		"close": "Zamknij",
+		"add": "Dodaj",
+		"delete": "Usuń",
+		"confirm": "Potwierdź"
+	},
+	"modals": {
+		"editTeamDetails": "Edytuj dane drużyny",
+		"coachName": "Imię i nazwisko trenera",
+		"stadiumName": "Nazwa stadionu",
+		"confirmTitle": "Potwierdź akcję",
+		"confirmMessage": "Czy na pewno chcesz wykonać tę akcję?"
+	},
+	"favoriteTeam": {
+		"title": "Ulubiona drużyna",
+		"recentForm": "Ostatnia forma",
+		"noFavorite": "Nie wybrano ulubionej drużyny",
+		"clickToSelect": "Kliknij gwiazdkę przy drużynie, aby ustawić ją jako ulubioną"
+	},
+	"validation": {
+		"required": "To pole jest wymagane",
+		"invalidScore": "Nieprawidłowy wynik",
+		"teamAlreadySelected": "Ta drużyna jest już wybrana",
+		"selectDifferentTeams": "Wybierz różne drużyny",
+		"enterValidData": "Wprowadź poprawne dane"
+	},
+	"loading": {
+		"loadingTeams": "Ładowanie drużyn...",
+		"loadingMatches": "Ładowanie meczów...",
+		"loadingData": "Ładowanie danych...",
+		"pleaseWait": "Proszę czekać..."
+	},
+	"errors": {
+		"loadError": "Błąd ładowania danych",
+		"saveError": "Błąd zapisywania",
+		"tryAgain": "Spróbuj ponownie",
+		"somethingWentWrong": "Coś poszło nie tak"
+	},
+	"success": {
+		"saved": "Zapisano pomyślnie",
+		"updated": "Zaktualizowano pomyślnie",
+		"added": "Dodano pomyślnie",
+		"deleted": "Usunięto pomyślnie"
+	},
+	"stats": {
+		"form": {
+			"win": "W",
+			"draw": "R",
+			"loss": "P"
+		},
+		"summary": {
+			"played": "Rozegrane",
+			"points": "Punkty",
+			"goalDifference": "Różnica bramek",
+			"homeRecord": "U siebie",
+			"awayRecord": "Na wyjeździe"
+		}
+	},
+	"filters": {
+		"all": "Wszystkie",
+		"home": "U siebie",
+		"away": "Na wyjeździe",
+		"wins": "Wygrane",
+		"draws": "Remisy",
+		"losses": "Przegrane"
+	},
+	"sorting": {
+		"sortBy": "Sortuj według",
+		"ascending": "Rosnąco",
+		"descending": "Malejąco"
+	},
+	"pagination": {
+		"previous": "Poprzednia",
+		"next": "Następna",
+		"page": "Strona",
+		"of": "z",
+		"showing": "Pokazywanie",
+		"to": "do",
+		"results": "wyników"
+	},
+	"language": {
+		"selectLanguage": "Wybierz język",
+		"polish": "Polski",
+		"english": "Angielski",
+		"changeLanguage": "Zmień język"
+	}
+}

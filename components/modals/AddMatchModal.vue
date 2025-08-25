@@ -1,13 +1,13 @@
 <template>
 	<BaseModal
-		title="Add New Match"
-		save-button-text="Add Match"
+		:title="t('matches.addNewMatch')"
+		:save-button-text="t('matches.addMatch')"
 		:save-disabled="!isValid"
 		@close="$emit('close')"
 		@save="saveMatch">
 		<div class="space-y-4">
 			<div>
-				<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Date</label>
+				<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{{ t('matches.date') }} </label>
 				<input
 					v-model="matchDate"
 					type="date"
@@ -15,22 +15,26 @@
 			</div>
 			<div class="grid grid-cols-2 gap-4">
 				<div>
-					<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Home Team</label>
+					<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+						>{{ t('matches.homeTeam') }}
+					</label>
 					<select
 						v-model.number="homeTeamId"
 						class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white">
-						<option value="">Select team</option>
+						<option value="">{{ t('matches.selectTeam') }}</option>
 						<option v-for="team in availableHomeTeams" :key="team.id" :value="team.id">
 							{{ team.name }}
 						</option>
 					</select>
 				</div>
 				<div>
-					<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Away Team</label>
+					<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+						>{{ t('matches.awayTeam') }}
+					</label>
 					<select
 						v-model.number="awayTeamId"
 						class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white">
-						<option value="">Select team</option>
+						<option value="">{{ t('matches.selectTeam') }}</option>
 						<option v-for="team in availableAwayTeams" :key="team.id" :value="team.id">
 							{{ team.name }}
 						</option>
@@ -39,7 +43,9 @@
 			</div>
 			<div class="grid grid-cols-2 gap-4">
 				<div>
-					<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Home Score</label>
+					<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">{{
+						t('matches.homeScore')
+					}}</label>
 					<input
 						v-model.number="homeScore"
 						type="number"
@@ -48,7 +54,9 @@
 						class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white" />
 				</div>
 				<div>
-					<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Away Score</label>
+					<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+						>{{ t('matches.awayScore') }}
+					</label>
 					<input
 						v-model.number="awayScore"
 						type="number"
@@ -66,6 +74,7 @@ import type { Team } from '~/types'
 import { useTeamsStore } from '~/stores/teams'
 
 const emit = defineEmits(['close', 'save'])
+const { t } = useI18n()
 
 const teamsStore = useTeamsStore()
 

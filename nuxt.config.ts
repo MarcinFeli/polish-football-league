@@ -1,6 +1,14 @@
 import tailwindcss from '@tailwindcss/vite'
 export default defineNuxtConfig({
 	modules: ['@pinia/nuxt'],
+	imports: {
+		imports: [
+			{
+				from: 'vue-i18n',
+				name: 'useI18n',
+			},
+		],
+	},
 	app: {
 		head: {
 			title: 'Vue - Momentum',

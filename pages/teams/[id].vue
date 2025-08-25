@@ -2,11 +2,11 @@
 	<div>
 		<Loading v-if="isLoading && !team" />
 		<div v-else-if="!team && !isLoading" class="text-center py-8">
-			<p class="text-gray-500 dark:text-gray-400">Team not found</p>
+			<p class="text-gray-500 dark:text-gray-400">{{ t('teams.noTeamFound') }}</p>
 			<NuxtLink
 				to="/"
 				class="mt-4 inline-block text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
-				Back to Teams
+				{{ t('navigation.backToTeams') }}
 			</NuxtLink>
 		</div>
 
@@ -23,7 +23,7 @@
 						stroke="currentColor">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
 					</svg>
-					Back to Teams
+					{{ t('navigation.backToTeams') }}
 				</NuxtLink>
 
 				<button
@@ -37,7 +37,7 @@
 						<path
 							d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
 					</svg>
-					{{ isFavorite ? 'Favorite Team' : 'Set as Favorite' }}
+					{{ isFavorite ? t('navigation.favoriteTeam') : t('teams.setAsTooltip') }}
 				</button>
 			</div>
 
@@ -50,13 +50,13 @@
 import { computed } from 'vue'
 import { useTeamsStore } from '~/stores/teams'
 
+const { t } = useI18n()
 const route = useRoute()
 const teamsStore = useTeamsStore()
 const isLoading = computed(() => teamsStore.isLoading)
 
 const teamId =
 	computed(() => parseInt(route.params.id as string)) || (localStorage.getItem('lastViewedTeamId') as string)
-console.log(teamId.value)
 const team = computed(() => {
 	if (!Number.isFinite(teamId.value)) return null
 	return teamsStore.getTeamById(teamId.value)
