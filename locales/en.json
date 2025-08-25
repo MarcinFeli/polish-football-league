@@ -38,12 +38,10 @@
 		"mostRecentMatch": "Most recent match on the right",
 		"noTeamFound": "Team not found",
 		"setAsTooltip": "Set as favorite team",
-		"positionInLeague": "Position",
-		"totalPoints": "Points"
+		"positionInLeague": "Position"
 	},
 	"matches": {
 		"allMatches": "All Matches",
-		"noMatches": "No match history available",
 		"noRecentMatches": "No recent matches available",
 		"date": "Date",
 		"match": "Match",
@@ -64,99 +62,14 @@
 		"scoreValidation": "Scores must be between 0 and 7",
 		"homeTeam": "Home Team",
 		"awayTeam": "Away Team",
-		"finalScore": "Final Score",
 		"deleteConfirm": "Are you sure you want to delete the match between {home} and {away}?"
 	},
 	"buttons": {
-		"save": "Save",
 		"cancel": "Cancel",
 		"saveResult": "Save Result",
-		"saveDetails": "Save Details",
-		"edit": "Edit",
-		"back": "Back",
-		"close": "Close",
-		"add": "Add",
-		"delete": "Delete",
-		"confirm": "Confirm"
+		"saveDetails": "Save Details"
 	},
 	"modals": {
-		"editTeamDetails": "Edit Team Details",
-		"coachName": "Coach name",
-		"stadiumName": "Stadium name",
-		"confirmTitle": "Confirm Action",
-		"confirmMessage": "Are you sure you want to perform this action?"
-	},
-	"favoriteTeam": {
-		"title": "Favorite Team",
-		"recentForm": "Recent Form",
-		"noFavorite": "No favorite team selected",
-		"clickToSelect": "Click the star next to a team to set it as favorite"
-	},
-	"validation": {
-		"required": "This field is required",
-		"invalidScore": "Invalid score",
-		"teamAlreadySelected": "This team is already selected",
-		"selectDifferentTeams": "Select different teams",
-		"enterValidData": "Enter valid data"
-	},
-	"loading": {
-		"loadingTeams": "Loading teams...",
-		"loadingMatches": "Loading matches...",
-		"loadingData": "Loading data...",
-		"pleaseWait": "Please wait..."
-	},
-	"errors": {
-		"loadError": "Error loading data",
-		"saveError": "Error saving",
-		"tryAgain": "Try again",
-		"somethingWentWrong": "Something went wrong"
-	},
-	"success": {
-		"saved": "Saved successfully",
-		"updated": "Updated successfully",
-		"added": "Added successfully",
-		"deleted": "Deleted successfully"
-	},
-	"stats": {
-		"form": {
-			"win": "W",
-			"draw": "D",
-			"loss": "L"
-		},
-		"summary": {
-			"played": "Played",
-			"points": "Points",
-			"goalDifference": "Goal Difference",
-			"homeRecord": "Home",
-			"awayRecord": "Away"
-		}
-	},
-	"filters": {
-		"all": "All",
-		"home": "Home",
-		"away": "Away",
-		"wins": "Wins",
-		"draws": "Draws",
-		"losses": "Losses"
-	},
-	"sorting": {
-		"sortBy": "Sort by",
-		"ascending": "Ascending",
-		"descending": "Descending"
-	},
-	"pagination": {
-		"previous": "Previous",
-		"next": "Next",
-		"page": "Page",
-		"of": "of",
-		"showing": "Showing",
-		"to": "to",
-		"results": "results"
-	},
-	"language": {
-		"selectLanguage": "Select Language",
-		"polish": "Polish",
-		"english": "English",
-		"changeLanguage": "Change Language"
+		"editTeamDetails": "Edit Team Details"
 	}
 }
