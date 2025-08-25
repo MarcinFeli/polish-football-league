@@ -64,7 +64,8 @@
 		"scoreValidation": "Scores must be between 0 and 7",
 		"homeTeam": "Home Team",
 		"awayTeam": "Away Team",
-		"finalScore": "Final Score"
+		"finalScore": "Final Score",
+		"deleteConfirm": "Are you sure you want to delete the match between {home} and {away}?"
 	},
 	"buttons": {
 		"save": "Save",

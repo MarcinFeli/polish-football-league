@@ -95,11 +95,23 @@
 								</div>
 							</td>
 							<td class="px-4 py-3 whitespace-nowrap">
-								<button
-									@click="startEditingMatch(match)"
-									class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium">
-									{{ t('matches.editResult') }}
-								</button>
+								<div class="flex items-center space-x-4">
+									<button
+										@click="startEditingMatch(match)"
+										class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium">
+										{{ t('matches.editResult') }}
+									</button>
+									<button
+										@click="handleDeleteMatch(match)"
+										class="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-600">
+										<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+											<path
+												fill-rule="evenodd"
+												d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm4 0a1 1 0 012 0v6a1 1 0 11-2 0V8z"
+												clip-rule="evenodd" />
+										</svg>
+									</button>
+								</div>
 							</td>
 						</tr>
 					</tbody>
@@ -139,5 +151,13 @@ const gamesPlayed = computed(() => {
 
 function startEditingMatch(match: FormattedMatch) {
 	emit('start-edit', match)
+}
+
+async function handleDeleteMatch(match: FormattedMatch) {
+	const confirmation = confirm(t('matches.deleteConfirm', { home: match.homeTeam, away: match.awayTeam }))
+
+	if (confirmation) {
+		await teamsStore.deleteMatch(match.id)
+	}
 }
 </script>

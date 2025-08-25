@@ -64,7 +64,8 @@
 		"scoreValidation": "Wynik musi być między 0 a 7",
 		"homeTeam": "Drużyna gospodarzy",
 		"awayTeam": "Drużyna gości",
-		"finalScore": "Wynik końcowy"
+		"finalScore": "Wynik końcowy",
+		"deleteConfirm": "Czy na pewno chcesz usunąć mecz pomiędzy {home} a {away}?"
 	},
 	"buttons": {
 		"save": "Zapisz",
