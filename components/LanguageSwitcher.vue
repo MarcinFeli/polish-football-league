@@ -29,15 +29,9 @@ import { computed } from 'vue'
 const { locale } = useI18n()
 const cookie = useCookie('locale')
 
-if (cookie.value && locale.value !== cookie.value) {
-	locale.value = cookie.value
-} else if (!cookie.value) {
-	cookie.value = locale.value || 'pl'
-}
-
 const currentLocale = computed(() => locale.value as string)
 
-function switchLocale(l: string) {
+function switchLocale(l: 'pl' | 'en') {
 	if (locale.value === l) return
 	locale.value = l
 	cookie.value = l
