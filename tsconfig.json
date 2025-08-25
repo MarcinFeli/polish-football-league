@@ -1,0 +1,15 @@
+{
+	"extends": "./.nuxt/tsconfig.json",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"~/*": ["./*"],
+			"@/*": ["./*"],
+			"@tailwindcss/vite": ["./node_modules/@tailwindcss/vite/dist/index.d.mts"]
+		},
+		"moduleResolution": "node",
+		"skipLibCheck": true,
+		"strict": true
+	},
+	"exclude": ["node_modules", "dist"]
+}
