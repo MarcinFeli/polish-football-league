@@ -72,7 +72,6 @@ function toggleFavorite() {
 }
 
 onMounted(() => {
-	console.log('wykonuje sie')
 	teamsStore.ensureTeamsLoaded()
 })
 </script>

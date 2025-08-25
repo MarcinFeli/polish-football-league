@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { MatchResult } from '~/types/enums'
-import type { Team, Match, FormattedMatch, TeamsResponse } from '~/types'
+import type { Team, Match, FormattedMatch } from '~/types'
 
 export const useTeamsStore = defineStore('teams', {
 	state: () => ({
@@ -28,21 +28,37 @@ export const useTeamsStore = defineStore('teams', {
 	actions: {
 		async fetchTeams() {
 			this.isLoading = true
+			const supabase = useSupabaseClient()
+
 			try {
-				await new Promise(resolve => setTimeout(resolve, 800))
-				const data = await $fetch<TeamsResponse>('/data/teams.json')
-				this.allMatches = data?.matches || []
-				const teamsData = data?.teams || []
+				const [teamsResponse, matchesResponse] = await Promise.all([
+					supabase.from('teams').select('*'),
+					supabase.from('matches').select('*'),
+				])
 
+				if (teamsResponse.error) throw teamsResponse.error
+				if (matchesResponse.error) throw matchesResponse.error
+
+				const teamsData: Team[] = teamsResponse.data.map(team => ({
+					...team,
+					keyPlayers: team.key_players,
+				})) as Team[]
+
+				const matchesData: Match[] = matchesResponse.data.map(match => ({
+					...match,
+					homeTeamId: match.home_team_id,
+					awayTeamId: match.away_team_id,
+					homeScore: match.home_score,
+					awayScore: match.away_score,
+				})) as Match[]
+
+				this.allMatches = matchesData
 				const teamsWithStats = this.calculateTeamStats(teamsData, this.allMatches)
-				const sortedTeams = [...teamsWithStats].sort((a, b) => b.points - a.points)
-				sortedTeams.forEach((team, index) => {
-					team.position = index + 1
-				})
 
-				this.teams = sortedTeams
+				this.teams = teamsWithStats
+				this.recalculateStats()
 			} catch (error) {
-				console.error('Error fetching teams:', error)
+				console.error('Error fetching data from Supabase:', error)
 				this.teams = []
 				this.allMatches = []
 			} finally {
@@ -54,7 +70,6 @@ export const useTeamsStore = defineStore('teams', {
 				await this.fetchTeams()
 			}
 		},
-
 		calculateTeamStats(teamsData: Team[], matches: Match[]): Team[] {
 			const teamStats: Record<number, Team> = {}
 			teamsData.forEach(team => {
@@ -149,7 +164,18 @@ export const useTeamsStore = defineStore('teams', {
 			})
 		},
 
-		updateMatchResult(matchId: number, homeScore: number, awayScore: number) {
+		async updateMatchResult(matchId: number, homeScore: number, awayScore: number) {
+			const supabase = useSupabaseClient()
+			const { error } = await supabase
+				.from('matches')
+				.update({ home_score: homeScore, away_score: awayScore })
+				.eq('id', matchId)
+
+			if (error) {
+				console.error('Error updating match result:', error)
+				return 
+			}
+
 			const matchIndex = this.allMatches.findIndex(m => m.id === matchId)
 			if (matchIndex === -1) return
 
@@ -159,10 +185,33 @@ export const useTeamsStore = defineStore('teams', {
 			this.recalculateStats()
 		},
 
-		addNewMatch(match: Omit<Match, 'id'>) {
+		async addNewMatch(match: Omit<Match, 'id'>) {
+			const supabase = useSupabaseClient()
+
+			const { data, error } = await supabase
+				.from('matches')
+				.insert({
+					date: match.date,
+					home_team_id: match.homeTeamId,
+					away_team_id: match.awayTeamId,
+					home_score: match.homeScore,
+					away_score: match.awayScore,
+				})
+				.select()
+				.single()
+
+			if (error || !data) {
+				console.error('Error adding new match:', error)
+				return
+			}
+
 			const newMatch: Match = {
-				...match,
-				id: Math.max(...this.allMatches.map(m => m.id)) + 1,
+				id: data.id,
+				date: data.date,
+				homeTeamId: data.home_team_id,
+				awayTeamId: data.away_team_id,
+				homeScore: data.home_score,
+				awayScore: data.away_score,
 			}
 
 			this.allMatches.push(newMatch)
@@ -199,13 +248,36 @@ export const useTeamsStore = defineStore('teams', {
 
 			this.teams = sortedTeams
 		},
-		updateTeamDetails(teamId: number, coach: string, stadium: string) {
+		async updateTeamDetails(teamId: number, coach: string, stadium: string) {
+			const supabase = useSupabaseClient()
+			const { error } = await supabase.from('teams').update({ coach, stadium }).eq('id', teamId)
+
+			if (error) {
+				console.error('Error updating team details:', error)
+				return
+			}
+
 			const teamIndex = this.teams.findIndex(t => t.id === teamId)
 			if (teamIndex === -1) return
 
 			this.teams[teamIndex].coach = coach
 			this.teams[teamIndex].stadium = stadium
 		},
+
+		async deleteMatch(matchId: number) {
+			const supabase = useSupabaseClient()
+			const { error } = await supabase.from('matches').delete().eq('id', matchId)
+
+			if (error) {
+				console.error('Error deleting match:', error)
+				return
+			}
+
+			this.allMatches = this.allMatches.filter(match => match.id !== matchId)
+
+			this.recalculateStats()
+		},
+
 		setFavoriteTeam(teamId: number | null) {
 			this.favoriteTeamId = teamId
 			if (teamId) {
